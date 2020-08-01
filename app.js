@@ -4,7 +4,9 @@ const todoList = document.querySelector(".todo-list");
 
 //event listeners
 todoButton.addEventListener("click", addTODO);
+todoList.addEventListener("click", deleteCheckTODO);
 
+//funcs
 function addTODO(event) {
   //doesnt reload page every time button is clicked
   event.preventDefault();
@@ -12,7 +14,13 @@ function addTODO(event) {
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
   const newTodo = document.createElement("li");
-  newTodo.innerText = "hey";
+
+  if (todoInput.value === "") {
+    alert("Cannot add empty string to TODO List");
+    return;
+  }
+
+  newTodo.innerText = todoInput.value;
   newTodo.classList.add("todo-item");
   todoDiv.appendChild(newTodo);
 
@@ -30,4 +38,24 @@ function addTODO(event) {
 
   //append to list
   todoList.appendChild(todoDiv);
+  //clear todo input value
+  todoInput.value = "";
+}
+
+function deleteCheckTODO(event) {
+  const item = event.target;
+  //delete
+  if (item.classList[0] === "trash-button") {
+    const todo = item.parentElement;
+    todo.classList.add("fall");
+    todo.addEventListener("transition", function () {
+      todo.remove();
+    });
+  }
+
+  //check
+  if (item.classList[0] === "checked-button") {
+    const todo = item.parentElement;
+    todo.classList.toggle("completed");
+  }
 }
