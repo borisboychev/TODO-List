@@ -11,9 +11,8 @@ filterOption.addEventListener("click", filterTODO);
 
 /* ADD TODOS */
 function addTODO(event) {
-  //doesnt reload page every time button is clicked
   event.preventDefault();
-  //todo div
+
   const todoDiv = document.createElement("div");
   todoDiv.classList.add("todo");
   const newTodo = document.createElement("li");
@@ -111,7 +110,6 @@ function getLocalTODOs() {
       todos = [];
     }
   }
-  //console.log(typeof todos);
   todos.forEach(function (todo) {
     const todoDiv = document.createElement("div");
     todoDiv.classList.add("todo");
@@ -121,18 +119,16 @@ function getLocalTODOs() {
     todoDiv.appendChild(newTodo);
     todoInput.value = "";
 
-    //check button
     const checkedButton = document.createElement("button");
     checkedButton.innerHTML = `<i class="fas fa-check"></i>`;
     checkedButton.classList.add("checked-button");
     todoDiv.appendChild(checkedButton);
 
-    //trash button
     const trashButton = document.createElement("button");
     trashButton.innerHTML = `<i class="fas fa-trash"></i>`;
     trashButton.classList.add("trash-button");
     todoDiv.appendChild(trashButton);
-    //append to list
+
     todoList.appendChild(todoDiv);
   });
 }

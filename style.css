@@ -1,7 +1,7 @@
 /*Variables*/
 
 :root {
-  --main-bg-color: radial-gradient(circle, #5c0067 0%, #00d4ff 100%);
+  --main-bg-color: linear-gradient(315deg, #485461 0%, #28313b 74%);
   --buttons-color: radial-gradient(
     circle,
     rgba(63, 94, 251, 1) 0%,
@@ -148,20 +148,18 @@ select {
   cursor: pointer;
   font-size: 1.1rem;
 }
+.select:hover {
+  background-color: var(--main-bg-color);
+}
 
-.select::after {
+.select:after {
   content: "\25BC";
   position: absolute;
-  background: whitesmoke;
+  background-color: whitesmoke;
   top: 0;
   right: 0;
   padding: 1rem;
   padding-bottom: 2rem;
-  border: var(--buttons-color);
+  border: var(--main-bg-color);
   pointer-events: none;
-}
-
-.select:hover::after {
-  background: transparent;
-  color: var(--buttons-color);
 }
