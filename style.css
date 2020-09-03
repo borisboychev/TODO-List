@@ -115,12 +115,13 @@ form button:hover {
 }
 
 .fall {
-  transform: translatey(40rem) rotateZ(20deg);
+  transform: translatey(20rem) rotateZ(20deg);
   opacity: 0;
 }
 
 .completed {
   text-decoration: line-through;
+  opacity: 0.5;
 }
 
 select {

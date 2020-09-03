@@ -42,15 +42,16 @@ function deleteCheckTODO(event) {
 
   if (item.classList[0] === "trash-button") {
     const todo = item.parentElement;
-    removeLocalTODOs(todo);
     todo.classList.add("fall");
-    todo.addEventListener("transition", () => todo.remove());
+    todo.addEventListener("transition", function () {
+      todo.remove();
+    });
+    removeLocalTODOs(todo);
   }
 
   if (item.classList[0] === "checked-button") {
     const todo = item.parentElement;
     todo.classList.toggle("completed");
-    console.log(todo);
   }
 }
 
@@ -138,21 +139,12 @@ function getLocalTODOs() {
 
 /* REMOVE LOCAL TODOS */
 function removeLocalTODOs(todo) {
-  let todos;
-  if (localStorage.getItem("todos") === null) {
-    todos = [];
-  } else {
-    try {
-      todos = JSON.parse(localStorage.getItem("todos"));
-    } catch (err) {
-      console.log(err);
-      todos = [];
-    }
-  }
   try {
+    let todos = JSON.parse(localStorage.getItem("todos"));
     const todoIndex = todo.children[0].innerText;
     todos.splice(todos.indexOf(todoIndex), 1);
     localStorage.setItem("todos", JSON.stringify(todos));
+    location.reload();
   } catch (err) {
     console.log(err);
   }
